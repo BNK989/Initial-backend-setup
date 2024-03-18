@@ -1,0 +1,59 @@
+[
+    {
+    "_id": "abc123",
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1542107359454
+    },
+    {
+    "_id": "def456",
+    "title": "Cannot view the list of cars",
+    "description": "the list is not showing",
+    "severity": 1,
+    "createdAt": 1541571200000
+    },
+    {
+    "_id": "ghi789",
+    "title": "Cannot delete a car",
+    "description": "the button does not work",
+    "severity": 2,
+    "createdAt": 1541834400000
+    },
+    {
+    "_id": "jkl101",
+    "title": "Cannot edit a car",
+    "description": "the fields are not editable",
+    "severity": 3,
+    "createdAt": 1542097600000
+    },
+    {
+    "_id": "mno212",
+    "title": "Cannot search a car",
+    "description": "the search bar does not work",
+    "severity": 1,
+    "createdAt": 1542260800000
+    },
+    {
+    "_id": "pqr444",
+    "title": "Cannot view a single car",
+    "description": "the page is blank",
+    "severity": 2,
+    "createdAt": 1542424000000
+    },
+    {
+    "_id": "rst666",
+    "title": "Cannot add a new car",
+    "description": "the button does not work",
+    "severity": 3,
+    "createdAt": 1542587200000
+    },
+    {
+    "_id": "tuv999",
+    "title": "Cannot sort the list of cars",
+    "description": "the sort button does not work",
+    "severity": 1,
+    "createdAt": 1542750400000
+    }
+
+]
