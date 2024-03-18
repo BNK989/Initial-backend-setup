@@ -47,5 +47,19 @@ app.get('/api/bug/:bugId/remove', (req, res) => {
     .catch((err) => res.send(err))
 })
 
+
+
+app.get('/log', (req, res) => {
+  fs.readFile(`./logs/backend.log`, 'utf8', (err, data) => {
+    if (err) {
+      res.send('error reading file')
+    } else {
+      res.send(data.replace(/[\n,]/g, function (match) {
+        return match + '<br>';
+      }))
+    }
+  })
+})
+
 app.listen(PORT, () => 
     loggerService.info(`Server ready at port ${PORT}`))
