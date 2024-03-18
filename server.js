@@ -11,9 +11,22 @@ app.get('/api/bug', (req, res) => {
     bugService.query()
     .then(data  => res.send(data))
 })
-// app.get('/api/bug/save', (req, res) => {})
-// app.get('/api/bug/:bugId', (req, res) => {})
-// app.get('/api/bug/:bugId/remove', (req, res) => {})
+
+app.get('/api/bug/:bugId', (req, res) => {
+    const bugId = req.params.bugId
+    bugService.getById(bugId)
+        .then(bug => res.send(bug))
+        .catch(err => res.send(err))
+})
+
+app.get('/api/bug/:bugId/remove', (req, res) => {
+    const bugId = req.params.bugId
+    bugService.remove(bugId)
+        .then(() => res.send(`<h2>Bug removed</h2>`))
+        .catch(err => res.send(err))
+})
+
+//app.get('/api/bug/save', (req, res) => {})
 
 
 
