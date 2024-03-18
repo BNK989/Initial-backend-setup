@@ -1,6 +1,7 @@
 import fs from 'fs'
 import express from 'express'
 import { bugService } from './services/bug.service.js'
+import { loggerService } from './services/logger.service.js'
 
 const PORT = 3030
 
@@ -10,6 +11,7 @@ app.get('/', (req, res) => res.send('Hello there'))
 app.get('/api/bug', (req, res) => {
   bugService.query().then((data) => res.send(data))
 })
+
 app.get('/api/bug/save', (req, res) => {
   const bugToSave = {
     _id: req.query.id,
@@ -20,7 +22,10 @@ app.get('/api/bug/save', (req, res) => {
   bugService
     .save(bugToSave)
         .then((bug) => res.send(bug))
-        .catch((err) => res.send(err))
+        .catch(err => {
+            res.send(err)
+            loggerService.error(err)
+        })
 })
 
 app.get('/api/bug/:bugId', (req, res) => {
@@ -28,7 +33,10 @@ app.get('/api/bug/:bugId', (req, res) => {
   bugService
     .getById(bugId)
     .then((bug) => res.send(bug))
-    .catch((err) => res.send(err))
+    .catch(err => {
+        res.send(err)
+        loggerService.error(err)
+    })
 })
 
 app.get('/api/bug/:bugId/remove', (req, res) => {
@@ -39,4 +47,5 @@ app.get('/api/bug/:bugId/remove', (req, res) => {
     .catch((err) => res.send(err))
 })
 
-app.listen(PORT, () => console.log(`Server ready at port ${PORT}`))
+app.listen(PORT, () => 
+    loggerService.info(`Server ready at port ${PORT}`))
