@@ -6,7 +6,8 @@ import { loggerService } from './services/logger.service.js'
 const PORT = 3030
 
 const app = express()
-app.get('/', (req, res) => res.send('Hello there'))
+app.use(express.static('public'))
+// app.get('/', (req, res) => res.send('Hello there'))
 
 app.get('/api/bug', (req, res) => {
   bugService.query().then((data) => res.send(data))
@@ -14,7 +15,7 @@ app.get('/api/bug', (req, res) => {
 
 app.get('/api/bug/save', (req, res) => {
   const bugToSave = {
-    _id: req.query.id,
+    _id: req.query._id,
     desc: req.query.desc,
     title: req.query.title,
     severity: +req.query.severity,
