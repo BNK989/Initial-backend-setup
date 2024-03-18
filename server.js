@@ -1,12 +1,16 @@
 import fs from 'fs'
 import express from 'express'
+import cookieParser from 'cookie-parser'
 import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
+import { utilService } from './services/utils.service.js'
 
 const PORT = 3030
 
 const app = express()
+
 app.use(express.static('public'))
+app.use(cookieParser())
 // app.get('/', (req, res) => res.send('Hello there'))
 
 app.get('/api/bug', (req, res) => {
@@ -22,21 +26,33 @@ app.get('/api/bug/save', (req, res) => {
   }
   bugService
     .save(bugToSave)
-        .then((bug) => res.send(bug))
-        .catch(err => {
-            res.send(err)
-            loggerService.error(err)
-        })
+    .then((bug) => res.send(bug))
+    .catch((err) => {
+      res.send(err)
+      loggerService.error(err)
+    })
 })
 
 app.get('/api/bug/:bugId', (req, res) => {
+  let visitedBugs = JSON.parse(req.cookies.visitedBugs || '[]')
+
   const bugId = req.params.bugId
   bugService
     .getById(bugId)
-    .then((bug) => res.send(bug))
-    .catch(err => {
-        res.send(err)
-        loggerService.error(err)
+    .then((bug) => {
+      visitedBugs.push(bugId)
+      visitedBugs = utilService.unique(visitedBugs)
+      if (visitedBugs.length > 3) return res.status(401).send('Wait for a bit')
+      console.log('visitedBugs:', visitedBugs)
+
+      res.cookie('visitedBugs', JSON.stringify(visitedBugs), {
+        maxAge: 7 * 1000,
+      })
+      res.send(bug)
+    })
+    .catch((err) => {
+      res.send(err)
+      loggerService.error(err)
     })
 })
 
@@ -48,19 +64,18 @@ app.get('/api/bug/:bugId/remove', (req, res) => {
     .catch((err) => res.send(err))
 })
 
-
-
 app.get('/log', (req, res) => {
   fs.readFile(`./logs/backend.log`, 'utf8', (err, data) => {
     if (err) {
       res.send('error reading file')
     } else {
-      res.send(data.replace(/[\n,]/g, function (match) {
-        return match + '<br>';
-      }))
+      res.send(
+        data.replace(/[\n,]/g, function (match) {
+          return match + '<br>'
+        })
+      )
     }
   })
 })
 
-app.listen(PORT, () => 
-    loggerService.info(`Server ready at port ${PORT}`))
+app.listen(PORT, () => loggerService.info(`Server ready at port ${PORT}`))

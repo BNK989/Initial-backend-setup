@@ -7,7 +7,8 @@ export const utilService = {
     download,
     httpGet,
     makeId,
-    makeLorem
+    makeLorem,
+    unique
 }
 
 
@@ -77,3 +78,9 @@ function makeLorem(size = 100) {
     }
     return txt
 }
+
+
+function unique(arr) {
+    return [...new Set(arr)];
+}
+

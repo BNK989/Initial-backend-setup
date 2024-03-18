@@ -134,3 +134,116 @@
 18.3.2024, 17:09:59 - INFO - Server ready at port 3030
 18.3.2024, 17:10:42 - INFO - Server ready at port 3030
 18.3.2024, 17:12:14 - INFO - Server ready at port 3030
+18.3.2024, 17:17:48 - INFO - Server ready at port 3030
+18.3.2024, 17:18:27 - INFO - Server ready at port 3030
+18.3.2024, 17:19:53 - INFO - Server ready at port 3030
+18.3.2024, 17:21:22 - INFO - Server ready at port 3030
+18.3.2024, 17:21:25 - INFO - Server ready at port 3030
+18.3.2024, 17:21:29 - INFO - Server ready at port 3030
+18.3.2024, 17:21:39 - INFO - Server ready at port 3030
+18.3.2024, 17:21:41 - INFO - Server ready at port 3030
+18.3.2024, 17:22:18 - INFO - Server ready at port 3030
+18.3.2024, 17:22:32 - INFO - Server ready at port 3030
+18.3.2024, 17:22:40 - INFO - Server ready at port 3030
+18.3.2024, 17:24:37 - INFO - Server ready at port 3030
+18.3.2024, 17:24:39 - INFO - Server ready at port 3030
+18.3.2024, 17:24:43 - INFO - Server ready at port 3030
+18.3.2024, 17:24:53 - INFO - Server ready at port 3030
+18.3.2024, 17:26:12 - INFO - Server ready at port 3030
+18.3.2024, 17:26:14 - INFO - Server ready at port 3030
+18.3.2024, 17:26:16 - INFO - Server ready at port 3030
+18.3.2024, 17:26:21 - INFO - Server ready at port 3030
+18.3.2024, 17:27:29 - INFO - Server ready at port 3030
+18.3.2024, 17:31:06 - INFO - Server ready at port 3030
+18.3.2024, 17:31:09 - INFO - Server ready at port 3030
+18.3.2024, 17:31:31 - INFO - Server ready at port 3030
+18.3.2024, 17:31:47 - INFO - Server ready at port 3030
+18.3.2024, 17:32:28 - INFO - Server ready at port 3030
+18.3.2024, 17:33:39 - INFO - Server ready at port 3030
+18.3.2024, 17:33:57 - INFO - Server ready at port 3030
+18.3.2024, 17:34:15 - INFO - Server ready at port 3030
+18.3.2024, 17:36:01 - INFO - Server ready at port 3030
+18.3.2024, 17:36:33 - INFO - Server ready at port 3030
+18.3.2024, 17:38:17 - INFO - Server ready at port 3030
+18.3.2024, 17:38:22 - INFO - Server ready at port 3030
+18.3.2024, 17:38:30 - INFO - Server ready at port 3030
+18.3.2024, 17:39:04 - INFO - Server ready at port 3030
+18.3.2024, 17:39:09 - INFO - Server ready at port 3030
+18.3.2024, 17:39:10 - INFO - Server ready at port 3030
+18.3.2024, 17:39:48 - INFO - Server ready at port 3030
+18.3.2024, 17:39:56 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:40:16 - INFO - Server ready at port 3030
+18.3.2024, 17:40:36 - INFO - Server ready at port 3030
+18.3.2024, 17:40:42 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:41:19 - INFO - Server ready at port 3030
+18.3.2024, 17:41:23 - INFO - Server ready at port 3030
+18.3.2024, 17:41:24 - INFO - Server ready at port 3030
+18.3.2024, 17:41:38 - INFO - Server ready at port 3030
+18.3.2024, 17:41:49 - INFO - Server ready at port 3030
+18.3.2024, 17:41:53 - INFO - Server ready at port 3030
+18.3.2024, 17:41:55 - INFO - Server ready at port 3030
+18.3.2024, 17:41:58 - INFO - Server ready at port 3030
+18.3.2024, 17:42:03 - INFO - Server ready at port 3030
+18.3.2024, 17:42:07 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:45:11 - INFO - Server ready at port 3030
+18.3.2024, 17:45:27 - ERROR - TypeError: visitedBugs is not iterable
+18.3.2024, 17:45:31 - ERROR - TypeError: visitedBugs is not iterable
+18.3.2024, 17:45:38 - INFO - Server ready at port 3030
+18.3.2024, 17:47:19 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:47:36 - INFO - Server ready at port 3030
+18.3.2024, 17:47:40 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:47:43 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:48:26 - INFO - Server ready at port 3030
+18.3.2024, 17:48:34 - INFO - Server ready at port 3030
+18.3.2024, 17:48:56 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:48:59 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:50:53 - INFO - Server ready at port 3030
+18.3.2024, 17:51:29 - INFO - Server ready at port 3030
+18.3.2024, 17:51:38 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:51:53 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:54:19 - INFO - Server ready at port 3030
+18.3.2024, 17:54:25 - INFO - Server ready at port 3030
+18.3.2024, 17:54:31 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:56:04 - INFO - Server ready at port 3030
+18.3.2024, 17:56:19 - INFO - Server ready at port 3030
+18.3.2024, 17:57:27 - INFO - Server ready at port 3030
+18.3.2024, 17:57:40 - ERROR - TypeError: visitedBugs.push is not a function
+18.3.2024, 17:58:36 - INFO - Server ready at port 3030
+18.3.2024, 17:58:44 - INFO - Server ready at port 3030
+18.3.2024, 18:02:50 - INFO - Server ready at port 3030
+18.3.2024, 18:03:16 - INFO - Server ready at port 3030
+18.3.2024, 18:04:47 - INFO - Server ready at port 3030
+18.3.2024, 18:06:50 - INFO - Server ready at port 3030
+18.3.2024, 18:06:53 - INFO - Server ready at port 3030
+18.3.2024, 18:06:54 - INFO - Server ready at port 3030
+18.3.2024, 18:07:03 - INFO - Server ready at port 3030
+18.3.2024, 18:07:14 - INFO - Server ready at port 3030
+18.3.2024, 18:07:24 - INFO - Server ready at port 3030
+18.3.2024, 18:07:31 - INFO - Server ready at port 3030
+18.3.2024, 18:07:38 - INFO - Server ready at port 3030
+18.3.2024, 18:08:55 - INFO - Server ready at port 3030
+18.3.2024, 18:09:42 - INFO - Server ready at port 3030
+18.3.2024, 18:09:58 - INFO - Server ready at port 3030
+18.3.2024, 18:10:00 - INFO - Server ready at port 3030
+18.3.2024, 18:10:12 - INFO - Server ready at port 3030
+18.3.2024, 18:14:12 - INFO - Server ready at port 3030
+18.3.2024, 18:14:32 - INFO - Server ready at port 3030
+18.3.2024, 18:14:33 - INFO - Server ready at port 3030
+18.3.2024, 18:14:34 - INFO - Server ready at port 3030
+18.3.2024, 18:14:37 - INFO - Server ready at port 3030
+18.3.2024, 18:15:08 - INFO - Server ready at port 3030
+18.3.2024, 18:15:13 - INFO - Server ready at port 3030
+18.3.2024, 18:15:16 - INFO - Server ready at port 3030
+18.3.2024, 18:15:17 - INFO - Server ready at port 3030
+18.3.2024, 18:15:47 - INFO - Server ready at port 3030
+18.3.2024, 18:16:04 - INFO - Server ready at port 3030
+18.3.2024, 18:16:11 - INFO - Server ready at port 3030
+18.3.2024, 18:16:40 - INFO - Server ready at port 3030
+18.3.2024, 18:17:51 - INFO - Server ready at port 3030
+18.3.2024, 18:17:56 - INFO - Server ready at port 3030
+18.3.2024, 18:18:56 - INFO - Server ready at port 3030
+18.3.2024, 18:18:57 - INFO - Server ready at port 3030
+18.3.2024, 18:19:01 - INFO - Server ready at port 3030
+18.3.2024, 18:19:23 - INFO - Server ready at port 3030
+18.3.2024, 18:20:19 - INFO - Server ready at port 3030
+18.3.2024, 18:21:46 - INFO - Server ready at port 3030
