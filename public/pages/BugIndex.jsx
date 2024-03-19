@@ -4,6 +4,7 @@ import { bugService } from '../services/bug.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { BugList } from '../cmps/BugList.jsx'
 import { BugFilter } from '../cmps/BugFilter.jsx'
+import { BugSort } from '../cmps/BugSort.jsx'
 
 import { utilService } from '../services/util.service.js'
 
@@ -16,17 +17,18 @@ export function BugIndex() {
   const [filterBy, setFilterBy] = useState(
     bugService.getFilterFromParams(searchParams)
   )
+  const [sortBy, setSortBy] = useState({})
 
   const debounceOnSetFilterRef = useRef(utilService.debounce(onSetFilter, 500))
 
   useEffect(() => {
     loadBugs(filterBy)
     setSearchParams(filterBy)
-  }, [filterBy])
+  }, [filterBy, sortBy])
 
   function loadBugs(filterBy) {
     console.log('filterBy:', filterBy)
-    bugService.query(filterBy).then(setBugs).then(getAllLabels)
+    bugService.query(filterBy, sortBy).then(setBugs).then(getAllLabels) 
   }
 
   function onSetFilter(fieldsToUpdate) {
@@ -107,6 +109,7 @@ export function BugIndex() {
         filterBy={filterBy}
         labels={labels}
       />
+      <BugSort setSortBy={setSortBy} sortBy={sortBy} />
       <main>
         <button onClick={onAddBug}>Add Bug ⛐</button>
         <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />

@@ -12,7 +12,7 @@ export const bugService = {
 
 const bugs = utilService.readJsonFile('data/bugData.json')
 
-function query(filterBy) {
+function query(filterBy, sortBy) {
     let bugsToReturn = bugs
     if (filterBy.title) {
         const regex = new RegExp(filterBy.title, 'i')
@@ -24,6 +24,10 @@ function query(filterBy) {
     if (filterBy.label) {
         bugsToReturn = bugsToReturn.filter(bug => bug.labels.includes(filterBy.label))
     }
+
+    const sortByKey = Object.keys(sortBy)[0]
+    if (sortByKey) bugsToReturn = _sortBugs(bugsToReturn, sortBy)
+
     if (filterBy.pageIdx !== undefined) {
         const pageIdx = +filterBy.pageIdx
         const startIdx = pageIdx * PAGE_SIZE
@@ -71,3 +75,19 @@ function _saveBugsToFile() {
         })
     })
 }
+
+function _sortBugs(bugs, sortBy) {
+    if (sortBy.title) {
+      bugs.sort((a, b) => a.title.localeCompare(b.title) * sortBy.title)
+    }
+  
+    if (sortBy.severity) {
+      bugs.sort((a, b) => (a.severity - b.severity) * sortBy.severity)
+    }
+  
+    if (sortBy.createdAt) {
+      bugs.sort((a, b) => (a.createdAt - b.createdAt) * sortBy.createdAt)
+    }
+  
+    return bugs
+  }

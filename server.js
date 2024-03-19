@@ -17,15 +17,19 @@ app.use(express.json())
 // GET ALL BUGS
 app.get('/api/bug', (req, res) => {
   console.log('req.query:', req.query)
+  const filterByObj = JSON.parse(req.query.filterBy)
+  const sortByObj = JSON.parse(req.query.sortBy)
+  console.log('filterByObj:', filterByObj)
+  console.log('sortByObj:', sortByObj)
   const filterBy = {
-    title: req.query.title || '',
-    minSeverity: +req.query.minSeverity || 0,
-    label: req.query.label || '',
+    title: filterByObj.title || '',
+    minSeverity: +filterByObj.minSeverity || 0,
+    label: filterByObj.label || '',
     //      pageIdx: req.query.pageIdx
   }
   console.log('filterBy:', filterBy)
   bugService
-    .query(filterBy)
+    .query(filterBy,sortByObj)
     .then((bugs) => {
       res.send(bugs)
     })

@@ -16,8 +16,8 @@ export const bugService = {
   getFilterFromParams,
 }
 
-function query(filterBy = getDefaultFilter()) {
-  return axios.get(BASE_URL, { params: filterBy }).then((res) => res.data)
+function query(filterBy = getDefaultFilter(), sortBy = {}) {
+  return axios.get(BASE_URL, { params: {filterBy, sortBy} }).then((res) => res.data)
 }
 function getById(bugId) {
   //return storageService.get(STORAGE_KEY, bugId)
