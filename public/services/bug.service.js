@@ -17,21 +17,7 @@ export const bugService = {
 }
 
 function query(filterBy = getDefaultFilter()) {
-  return axios
-    .get(BASE_URL)
-    .then((res) => res.data)
-    .then((bugs) => {
-      if (filterBy.title) {
-        const regex = new RegExp(filterBy.title, 'i')
-        bugs = bugs.filter((bug) => regex.test(bug.title))
-      }
-
-      if (filterBy.minSeverity) {
-        bugs = bugs.filter((bug) => bug.severity >= filterBy.minSeverity)
-      }
-
-      return bugs
-    })
+  return axios.get(BASE_URL, { params: filterBy }).then((res) => res.data)
 }
 function getById(bugId) {
   //return storageService.get(STORAGE_KEY, bugId)
@@ -44,7 +30,6 @@ function remove(bugId) {
 }
 
 function save(bug) {
-
   if (bug._id) {
     return axios.put(BASE_URL, bug)
   } else {

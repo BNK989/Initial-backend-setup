@@ -14,14 +14,25 @@ app.use(express.static('public'))
 app.use(cookieParser())
 app.use(express.json())
 
+// GET ALL BUGS
 app.get('/api/bug', (req, res) => {
-  const { query } = req
-  const bugToSave = {
-    title: query.title,
-    severity: query.severity,
-    description: query.desc,
+  console.log('req.query:', req.query)
+  const filterBy = {
+    title: req.query.title || '',
+    //description: req.query.description || '',
+    minSeverity: +req.query.minSeverity || 0,
+    //      pageIdx: req.query.pageIdx
   }
-  bugService.query().then((data) => res.send(data))
+  console.log('filterBy:', filterBy)
+  bugService
+    .query(filterBy)
+    .then((bugs) => {
+      res.send(bugs)
+    })
+    .catch((err) => {
+      loggerService.error('Cannot get bugs', err)
+      res.status(400).send('Cannot get bugs')
+    })
 })
 
 // SAVE NEW BUG

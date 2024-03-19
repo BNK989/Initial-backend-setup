@@ -12,8 +12,25 @@ export const bugService = {
 
 const bugs = utilService.readJsonFile('data/bugData.json')
 
-function query() {
-    return Promise.resolve(bugs)
+function query(filterBy) {
+    let bugsToReturn = bugs
+    if (filterBy.title) {
+        const regex = new RegExp(filterBy.title, 'i')
+        bugsToReturn = bugsToReturn.filter(bug => regex.test(bug.title))
+    }
+    if (filterBy.minSeverity) {
+        bugsToReturn = bugsToReturn.filter(bug => bug.severity >= filterBy.minSeverity)
+    }
+    if (filterBy.desc) {
+        const regex = new RegExp(filterBy.desc, 'i')
+        bugsToReturn = bugsToReturn.filter(bug => regex.test(bug.desc))
+    }
+    if (filterBy.pageIdx !== undefined) {
+        const pageIdx = +filterBy.pageIdx
+        const startIdx = pageIdx * PAGE_SIZE
+        bugsToReturn = bugsToReturn.slice(startIdx, startIdx + PAGE_SIZE)
+    }
+    return Promise.resolve(bugsToReturn)
 }
 
 function getById(id) {
