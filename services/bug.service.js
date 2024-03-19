@@ -21,9 +21,8 @@ function query(filterBy) {
     if (filterBy.minSeverity) {
         bugsToReturn = bugsToReturn.filter(bug => bug.severity >= filterBy.minSeverity)
     }
-    if (filterBy.desc) {
-        const regex = new RegExp(filterBy.desc, 'i')
-        bugsToReturn = bugsToReturn.filter(bug => regex.test(bug.desc))
+    if (filterBy.label) {
+        bugsToReturn = bugsToReturn.filter(bug => bug.labels.includes(filterBy.label))
     }
     if (filterBy.pageIdx !== undefined) {
         const pageIdx = +filterBy.pageIdx

@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function BugFilter({ onSetFilter, filterBy }) {
+export function BugFilter({ onSetFilter, filterBy, labels }) {
   const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
   useEffect(() => {
@@ -10,7 +10,7 @@ export function BugFilter({ onSetFilter, filterBy }) {
   function handleChange({ target }) {
     let { value, name: field, type } = target
     if (type === 'number') value = +value
-    setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [field]: value }))
+    setFilterByToEdit((prevFilterBy) => ({ ...prevFilterBy, [field]: value }))
   }
 
   return (
@@ -27,7 +27,6 @@ export function BugFilter({ onSetFilter, filterBy }) {
           onChange={handleChange}
           placeholder="By title"
         />
-
         <label htmlFor="minSeverity">Min severity</label>
         <input
           type="number"
@@ -37,6 +36,21 @@ export function BugFilter({ onSetFilter, filterBy }) {
           onChange={handleChange}
           placeholder="By min severity"
         />
+        <label htmlFor="severityOptions">Label</label>
+        <select
+          type="text"
+          id="label"
+          name="label"
+          value={filterByToEdit.label}
+          onChange={handleChange}
+        >
+          <option value="">By label</option>
+          {labels.map((label) => (
+            <option key={label} value={label}>
+              {label}
+            </option>
+          ))}
+        </select>
       </form>
     </section>
   )

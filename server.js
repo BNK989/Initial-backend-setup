@@ -19,8 +19,8 @@ app.get('/api/bug', (req, res) => {
   console.log('req.query:', req.query)
   const filterBy = {
     title: req.query.title || '',
-    //description: req.query.description || '',
     minSeverity: +req.query.minSeverity || 0,
+    label: req.query.label || '',
     //      pageIdx: req.query.pageIdx
   }
   console.log('filterBy:', filterBy)

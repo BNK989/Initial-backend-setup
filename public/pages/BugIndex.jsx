@@ -12,6 +12,7 @@ const { Link, useSearchParams } = ReactRouterDOM
 export function BugIndex() {
   const [bugs, setBugs] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams()
+  const [labels, setLabels] = useState([])
   const [filterBy, setFilterBy] = useState(
     bugService.getFilterFromParams(searchParams)
   )
@@ -25,7 +26,7 @@ export function BugIndex() {
 
   function loadBugs(filterBy) {
     console.log('filterBy:', filterBy)
-    bugService.query(filterBy).then(setBugs)
+    bugService.query(filterBy).then(setBugs).then(getAllLabels)
   }
 
   function onSetFilter(fieldsToUpdate) {
@@ -33,11 +34,23 @@ export function BugIndex() {
     //console.log('26-fieldsToUpdate:', filterBy)
   }
 
+  function getAllLabels() {
+    const labels = []
+    bugs.forEach((bug) => {
+      if (!labels.includes(...bug.labels)) {
+        labels.push(...bug.labels)
+      }
+    })
+    console.log('labels:', labels)
+    setLabels(labels)
+    //return labels
+  }
+
   function onRemoveBug(bugId) {
     bugService
       .remove(bugId)
       .then(() => {
-        console.log('Deleted Succesfully!')
+        console.log('Deleted Successfully!')
         const bugsToUpdate = bugs.filter((bug) => bug._id !== bugId)
         setBugs(bugsToUpdate)
         showSuccessMsg('Bug removed')
@@ -92,6 +105,7 @@ export function BugIndex() {
       <BugFilter
         onSetFilter={debounceOnSetFilterRef.current}
         filterBy={filterBy}
+        labels={labels}
       />
       <main>
         <button onClick={onAddBug}>Add Bug ⛐</button>

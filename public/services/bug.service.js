@@ -49,7 +49,7 @@ function save(bug) {
 }
 
 function getDefaultFilter() {
-  return { title: '', minSeverity: 0 }
+  return { title: '', minSeverity: 0, label: '' }
 }
 
 function getFilterFromParams(searchParams = {}) {
@@ -57,6 +57,7 @@ function getFilterFromParams(searchParams = {}) {
   return {
     title: searchParams.get('title') || defaultFilter.title,
     minSeverity: searchParams.get('minSeverity') || defaultFilter.minSeverity,
+    label: searchParams.get('label') || defaultFilter.label,
   }
 }
 
