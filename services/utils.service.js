@@ -8,7 +8,9 @@ export const utilService = {
     httpGet,
     makeId,
     makeLorem,
-    unique
+    unique,
+    throttle,
+    debounce,
 }
 
 
@@ -84,3 +86,23 @@ function unique(arr) {
     return [...new Set(arr)];
 }
 
+function debounce(fn, wait) {
+    let timer
+    return function (...args) {
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+            fn.apply(this, args)
+        }, wait)
+    }
+}
+
+function throttle(fn, wait) {
+    let timer
+    return function (...args) {
+        if (timer) return
+        timer = setTimeout(() => {
+            fn.apply(this, args)
+            timer = undefined
+        }, wait)
+    }
+}
