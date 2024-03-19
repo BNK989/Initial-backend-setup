@@ -12,12 +12,26 @@ export const bugService = {
   getById,
   save,
   remove,
+  getDefaultFilter,
+  getFilterFromParams,
 }
 
-function query() {
-  //return storageService.query(STORAGE_KEY)
-  //return fetch('/api/bug').then(res => res.json())
-  return axios.get(BASE_URL).then((res) => res.data)
+function query(filterBy = getDefaultFilter()) {
+  return axios
+    .get(BASE_URL)
+    .then((res) => res.data)
+    .then((bugs) => {
+      if (filterBy.title) {
+        const regex = new RegExp(filterBy.title, 'i')
+        bugs = bugs.filter((bug) => regex.test(bug.title))
+      }
+
+      if (filterBy.minSeverity) {
+        bugs = bugs.filter((bug) => bug.severity >= filterBy.minSeverity)
+      }
+
+      return bugs
+    })
 }
 function getById(bugId) {
   //return storageService.get(STORAGE_KEY, bugId)
@@ -26,23 +40,39 @@ function getById(bugId) {
 
 function remove(bugId) {
   //return storageService.remove(STORAGE_KEY, bugId)
-  return axios.get(BASE_URL + bugId + '/remove').then((res) => res.data)
+  return axios.delete(BASE_URL + bugId).then((res) => res.data)
 }
 
 function save(bug) {
-  const queryParams = Object.keys(bug)
-    .map((key) => {
-      if (key === 'desc') return
-      return key + '=' + encodeURIComponent(bug[key])
-    })
-    .join('&')
-  console.log('queryParams:', queryParams)
-  return axios.get(BASE_URL + 'save?' + queryParams).then((res) => res.data)
-  // if (bug._id) {
-  //     return storageService.put(STORAGE_KEY, bug)
-  // } else {
-  //     return storageService.post(STORAGE_KEY, bug)
-  // }
+
+  if (bug._id) {
+    return axios.put(BASE_URL, bug)
+  } else {
+    return axios.post(BASE_URL, bug)
+  }
+  // const url = BASE_URL + 'save'
+
+  // const { title, severity } = bug
+  // console.log('bug:', bug)
+  // const queryParams = { title, severity }
+
+  // if (bug._id) queryParams._id = bug._id
+
+  // console.log('queryParams:', queryParams)
+
+  // return axios.get(url, { params: queryParams })
+}
+
+function getDefaultFilter() {
+  return { title: '', minSeverity: 0 }
+}
+
+function getFilterFromParams(searchParams = {}) {
+  const defaultFilter = getDefaultFilter()
+  return {
+    title: searchParams.get('title') || defaultFilter.title,
+    minSeverity: searchParams.get('minSeverity') || defaultFilter.minSeverity,
+  }
 }
 
 function _createBugs() {

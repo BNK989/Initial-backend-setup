@@ -9,27 +9,50 @@ const PORT = 3030
 
 const app = express()
 
+// Express config
 app.use(express.static('public'))
 app.use(cookieParser())
-// app.get('/', (req, res) => res.send('Hello there'))
+app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
+  const { query } = req
+  const bugToSave = {
+    title: query.title,
+    severity: query.severity,
+    description: query.desc,
+  }
   bugService.query().then((data) => res.send(data))
 })
 
-app.get('/api/bug/save', (req, res) => {
+// SAVE NEW BUG
+app.post('/api/bug', (req, res) => {
   const bugToSave = {
-    _id: req.query._id,
-    desc: req.query.desc,
-    title: req.query.title,
-    severity: +req.query.severity,
+    title: req.body.title,
+    severity: +req.body.severity,
   }
   bugService
     .save(bugToSave)
     .then((bug) => res.send(bug))
     .catch((err) => {
-      res.send(err)
-      loggerService.error(err)
+      loggerService.error('Cannot save bug', err)
+      res.status(400).send('Cannot save bug')
+    })
+})
+
+// UPDATE BUG
+app.put('/api/bug', (req, res) => {
+  const bugToSave = {
+    title: req.body.title,
+    severity: +req.body.severity,
+    description: req.body.description,
+    _id: req.body._id,
+  }
+  bugService
+    .save(bugToSave)
+    .then((bug) => res.send(bug))
+    .catch((err) => {
+      loggerService.error('Cannot save bug', err)
+      res.status(400).send('Cannot save bug')
     })
 })
 
@@ -56,7 +79,7 @@ app.get('/api/bug/:bugId', (req, res) => {
     })
 })
 
-app.get('/api/bug/:bugId/remove', (req, res) => {
+app.delete('/api/bug/:bugId', (req, res) => {
   const bugId = req.params.bugId
   bugService
     .remove(bugId)

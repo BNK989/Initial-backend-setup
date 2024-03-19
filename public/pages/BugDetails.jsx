@@ -30,6 +30,11 @@ export function BugDetails() {
           Severity: <span>{bug.severity}</span>
         </p>
         <p>{bug.desc}</p>
+        <ul>
+          {bug.labels && bug.labels.map((label) => (
+            <li key={label}>{label}</li>
+          ))}
+        </ul>
         <Link to="/bug">Back to List</Link>
       </div>
     )

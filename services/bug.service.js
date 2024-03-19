@@ -35,7 +35,8 @@ function save(bug) {
         bugs[bugIdx] = bug
     } else {
         bug._id = utilService.makeId()
-        bug.desc = utilService.makeLorem()
+        bug.description = utilService.makeLorem()
+        bug.labels = ['first', 'second', 'third']
         bug.createdAt = Date.now()
         bugs.unshift(bug)
     }
