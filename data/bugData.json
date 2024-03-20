@@ -1,17 +1,5 @@
 [
     {
-        "_id": "abc1233",
-        "title": "Cannot create a Car",
-        "description": "form not showing when creating a new Car",
-        "severity": 3,
-        "createdAt": 1542107359454,
-        "labels": [
-            "critical",
-            "need-CR",
-            "dev-branch"
-        ]
-    },
-    {
         "_id": "abc1234",
         "title": "Cannot edit a Car",
         "description": "form not showing when editing a Car",

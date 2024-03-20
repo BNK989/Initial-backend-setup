@@ -3,6 +3,8 @@ import fr from 'follow-redirects'
 
 import { utilService } from "./utils.service.js"
 
+const PAGE_SIZE = 3
+
 export const bugService = {
     query,
     getById,

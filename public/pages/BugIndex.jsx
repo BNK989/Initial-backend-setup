@@ -22,20 +22,16 @@ export function BugIndex() {
   const debounceOnSetFilterRef = useRef(utilService.debounce(onSetFilter, 500))
 
   useEffect(() => {
-    loadBugs(filterBy)
-    setSearchParams(filterBy)
+    loadBugs()
+    setSearchParams({ ...filterBy, ...sortBy })
   }, [filterBy, sortBy])
 
-  function loadBugs(filterBy) {
+  function loadBugs() {
     console.log('filterBy:', filterBy)
-    bugService.query(filterBy, sortBy).then(setBugs).then(getAllLabels) 
+    bugService.query(filterBy, sortBy).then(setBugs).then(getAllLabels)
   }
 
-  function onSetFilter(fieldsToUpdate) {
-    setFilterBy((prevFilter) => ({ ...prevFilter, ...fieldsToUpdate }))
-    //console.log('26-fieldsToUpdate:', filterBy)
-  }
-
+  
   function getAllLabels() {
     const labels = []
     bugs.forEach((bug) => {
@@ -90,7 +86,7 @@ export function BugIndex() {
       .then((data) => data.data)
       .then((savedBug) => {
         const bugsToUpdate = bugs.map((currBug) =>
-          currBug._id === savedBug._id ? savedBug : currBug
+        currBug._id === savedBug._id ? savedBug : currBug
         )
         setBugs(bugsToUpdate)
         showSuccessMsg('Bug updated')
@@ -100,6 +96,15 @@ export function BugIndex() {
         showErrorMsg('Cannot update bug')
       })
   }
+      function onSetFilter(fieldsToUpdate) {
+        setFilterBy((prevFilter) => ({ ...prevFilter, ...fieldsToUpdate }))
+      }
+
+      function onChangePage(diff) {
+        let nextPageIdx = filterBy.pageIdx + diff
+        if (nextPageIdx < 0) nextPageIdx = 0
+        setFilterBy(prevFilter => ({ ...prevFilter, pageIdx: nextPageIdx }))
+      }
 
   return (
     <main>
@@ -114,6 +119,9 @@ export function BugIndex() {
         <button onClick={onAddBug}>Add Bug ⛐</button>
         <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
       </main>
+      <button onClick={() => onChangePage(-1)}>-</button>
+      <span>{filterBy.pageIdx + 1}</span>
+      <button onClick={() => onChangePage(1)}>+</button>
     </main>
   )
 }

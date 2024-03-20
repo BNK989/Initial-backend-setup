@@ -25,7 +25,7 @@ app.get('/api/bug', (req, res) => {
     title: filterByObj.title || '',
     minSeverity: +filterByObj.minSeverity || 0,
     label: filterByObj.label || '',
-    //      pageIdx: req.query.pageIdx
+    pageIdx: filterByObj.pageIdx
   }
   console.log('filterBy:', filterBy)
   bugService
